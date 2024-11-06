@@ -1,3 +1,6 @@
+from src.utils import filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies, print_vacancies
+
+
 def user_interaction():
     """Основная функция проекта для взаимодействия с пользователем"""
     platforms = ["HeadHunter"]

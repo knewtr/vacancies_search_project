@@ -20,7 +20,7 @@ class JSONSaver(FileManager):
         else:
             return []
 
-    def add_to_json_file(self, file_path, new_data):
+    def add_vacancy(self, file_path, new_data):
         """Метод для добавления новых данных в json-файл"""
         data = self.read_json_file(file_path)
         data.extend(new_data)
@@ -29,6 +29,7 @@ class JSONSaver(FileManager):
             json.dump(data, file, ensure_ascii=False, indent=4)
 
     def delete_vacancy(self, _file_worker, vacancy_name):
+        """Метод удаления данных из json-файла"""
         with open(_file_worker, 'r', encoding='utf-8') as file:
             data = json.load(file)
 

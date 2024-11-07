@@ -1,13 +1,14 @@
 from abc import ABC, abstractmethod
-import requests
+
 
 class Parser(ABC):
     """Абстрактный родительский класс для подключения к API"""
+
     def __init__(self):
         pass
 
     @abstractmethod
-    def get_response(self, keyword, per_page):
+    def __get_response(self):
         """Абстрактный метод для получения ответа от API"""
         pass
 

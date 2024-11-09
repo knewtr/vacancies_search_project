@@ -4,40 +4,48 @@ from src.base_vacancy import BaseVacancy
 class Vacancy(BaseVacancy):
     """Класс для работы с данными вакансий"""
 
-    __slots__ = ("name", "url", "_salary", "requirements", "responsibility")
+    __slots__ = ("name", "url", "salary", "description")
 
-    def __init__(self, name, url, _salary, requirements, responsibility):
+    def __init__(self, name, url, salary, description):
         self.name = name
         self.url = url
-        self._salary = _salary
-        self.requirements = requirements
-        self.responsibility = responsibility
+        self.salary = salary
+        self.description = description
 
     def __str__(self):
         return (
-            f"Вакансия: {self.name}\n, Ссылка: {self.url}\n, Зарплата: {self._salary}\n"
-            f"Требования: {self.requirements}\n, Обязанности: {self.responsibility}\n"
+            f"Вакансия: {self.name}\n, Ссылка: {self.url}\n, Зарплата: {self.salary}\n"
+            f"Описание: {self.description}\n"
         )
+
+    @property
+    def vacancy_dict(self):
+        """Метод возвращает словарь вакансии"""
+        return {
+            "name": self.name,
+            "url": self.url,
+            "salary": self.salary,
+            "description": self.description,
+        }
 
     def __le__(self, other):
         """Метод сравнения по зарплате <="""
-        return self._salary <= other.salary
+        return self.salary <= other.salary
 
     def __lt__(self, other):
         """Метод сравнения по зарплате <"""
-        return self._salary < other.salary
+        return self.salary < other.salary
 
     def __ge__(self, other):
         """Метод сравнения по зарплате >="""
-        return self._salary >= other.salary
+        return self.salary >= other.salary
 
     def __gt__(self, other):
         """Метод сравнения по зарплате >"""
-        return self._salary > other.salary
-
+        return self.salary > other.salary
 
     @staticmethod
-    def salary(salary: int | None | str) -> int:
+    def _is_salary(salary: int | str | None) -> int:
         """Метод валидации данных о зарплате"""
         if salary is None or (type(salary) is str and not salary.isdigit()):
             return 0
@@ -52,21 +60,10 @@ class Vacancy(BaseVacancy):
         return [cls(**vacancy) for vacancy in vacancies]
 
     @classmethod
-    def new_vacancy(cls, new_vacancy_dict):
+    def new_vacancy(cls, new_vacancy_dict: dict):
         """Метод позволяет инициализировать новую вакансию"""
-        name = new_vacancy_dict.get('name')
-        url = new_vacancy_dict.get('url')
-        salary = Vacancy.salary(new_vacancy_dict.get('salary'))
-        requirements = new_vacancy_dict.get('requirements')
-        responsibility = new_vacancy_dict.get('responsibility')
-
-    @property
-    def vacancy_dict(self):
-        """Метод возвращает словарь вакансии"""
-        return {
-            'name': self.name,
-            'url': self.url,
-            'salary': self.salary,
-            'requirements': self.requirements,
-            'responsibility': self.responsibility,
-        }
+        name = new_vacancy_dict.get("name")
+        url = new_vacancy_dict.get("url")
+        salary = Vacancy._is_salary(new_vacancy_dict.get("salary", 0))
+        description = new_vacancy_dict.get("description")
+        return cls(name, url, salary, description)

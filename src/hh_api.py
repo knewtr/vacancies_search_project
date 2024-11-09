@@ -37,7 +37,7 @@ class HeadHunterAPI(Parser):
             print(f"Ошибка подключения к hh.ru.")
             return False
 
-    def get_vacancies(self, keyword, per_page=10) -> list[dict]:
+    def get_vacancies(self, keyword, per_page=10):
         """Метод для получения данных в формате json"""
         vacancies = []
         if self._Parser__get_response():
@@ -49,6 +49,18 @@ class HeadHunterAPI(Parser):
                 self.__params["page"] += 1
         return vacancies
 
+    @classmethod
+    def get_vacancy_list(cls, vacancy):
+        salary = 0
+        vacancy_list = {
+            "name": vacancy["name"],
+            "url": vacancy.get("url", ""),
+            "salary": salary,
+            "description": f"Обязанности: {vacancy['snippet'].get('responsibility', '')} "
+            f"Требования: {vacancy['snippet'].get('requirement', '')}",
+        }
+        return vacancy_list
 
-if __name__ == "__main__":
-    HeadHunterAPI().get_vacancies("Python")
+
+# if __name__ == "__main__":
+#     HeadHunterAPI().get_vacancies("Python")

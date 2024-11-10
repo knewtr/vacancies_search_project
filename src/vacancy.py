@@ -61,15 +61,23 @@ class Vacancy(BaseVacancy):
         """Метод возвращает список объектов класса Vacancy из списка словарей"""
         objects_list = []
         for vacancy in vacancies:
-            objects_list.append(cls(vacancy.get('name'), vacancy.get('url'), vacancy.get('salary'), vacancy.get('responsibility'), vacancy.get('requirements')))
+            objects_list.append(
+                cls(
+                    vacancy.get("name"),
+                    vacancy.get("url"),
+                    vacancy.get("salary"),
+                    vacancy.get("responsibility"),
+                    vacancy.get("requirements"),
+                )
+            )
         return objects_list
 
     @classmethod
     def new_vacancy(cls, new_vacancy_dict: dict):
         """Метод позволяет инициализировать новую вакансию"""
-        name = new_vacancy_dict.get('name')
-        url = new_vacancy_dict.get('url')
-        salary = Vacancy.__is_salary(new_vacancy_dict.get('salary'))
-        responsibility = new_vacancy_dict.get('responsibility')
-        requirements = new_vacancy_dict.get('requirements')
+        name = new_vacancy_dict.get("name")
+        url = new_vacancy_dict.get("url")
+        salary = Vacancy.__is_salary(new_vacancy_dict.get("salary"))
+        responsibility = new_vacancy_dict.get("responsibility")
+        requirements = new_vacancy_dict.get("requirements")
         return cls(name, url, salary, responsibility, requirements)

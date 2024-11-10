@@ -15,7 +15,6 @@ class JSONSaver(FileManager):
         except FileNotFoundError:
             print("Файл не существует")
 
-
     def read_json_file(self):
         """Метод для чтения данных json-файла"""
         if self.__file_worker:
@@ -28,7 +27,7 @@ class JSONSaver(FileManager):
     def add_vacancy(self, vacancy: Vacancy):
         """Метод для добавления новых данных в json-файл"""
         vacancy_dict = Vacancy.vacancy_dict
-        with open(self.__file_worker, "a", encoding='utf-8') as file:
+        with open(self.__file_worker, "a", encoding="utf-8") as file:
             data = json.load(file)
             json.dump(vacancy_dict, file)
 

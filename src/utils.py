@@ -2,24 +2,24 @@ from src.hh_api import HeadHunterAPI
 from src.vacancy import Vacancy
 
 
-def get_vacancy_list(vacancies_list_dict: list[dict]) -> list[Vacancy]:
+def get_vacancy_list(vacancies_list_dict):
     """Функция возвращает список экземпляров класса Vacancy из списка словарей"""
-    vacancy_list = list(map(lambda x: Vacancy.new_vacancy(HeadHunterAPI.get_vacancy_list(x)), vacancies_list_dict))
+    vacancy_list = list(map(lambda x: Vacancy.new_vacancy(HeadHunterAPI.get_vacancy_formatted(x)), vacancies_list_dict))
     return vacancy_list
 
 
-def filter_vacancies(vacancies: list[Vacancy], filter_words: list[str]) -> list[Vacancy]:
+def filter_vacancies(vacancies, filter_words):
     """Функция фильтрации вакансий по ключевым словам"""
     filtered_vacancies = []
     for vacancy in vacancies:
         for word in filter_words:
-            if word.lower() in vacancy.get('responsibility').lower():
+            if word.lower() in vacancy.requirements.lower() or word.lower() in vacancy.responsibility.lower():
                 filtered_vacancies.append(vacancy)
                 continue
     return filtered_vacancies
 
 
-def get_vacancies_by_salary(filtered_vacancies: list[Vacancy], salary_range: str) -> list[Vacancy]:
+def get_vacancies_by_salary(filtered_vacancies, salary_range):
     """Функция фильтрации вакансий по заработной плате"""
     ranged_vacancies = []
     vac_range = list(map(lambda x: int(x), salary_range.split(" - ")))
@@ -31,13 +31,13 @@ def get_vacancies_by_salary(filtered_vacancies: list[Vacancy], salary_range: str
     return ranged_vacancies
 
 
-def sort_vacancies(ranged_vacancies: list[Vacancy]) -> list[Vacancy]:
+def sort_vacancies(ranged_vacancies):
     """Функция сортировки вакансий по заработной плате"""
     sorted_vacancies = sorted(ranged_vacancies, key=lambda v: v.salary, reverse=True)
     return sorted_vacancies
 
 
-def get_top_vacancies(sorted_vacancies: list[Vacancy], top_n: int) -> list[Vacancy]:
+def get_top_vacancies(sorted_vacancies, top_n):
     """Функция выводит топ-N вакансий по заработной плате"""
     top_vacancies = []
     for i in range(top_n):

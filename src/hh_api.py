@@ -9,7 +9,7 @@ class HeadHunterAPI(Parser):
     def __init__(self):
         self.__url = "https://api.hh.ru/vacancies"
         self.__headers = {"User-Agent": "HH-User-Agent"}
-        self.__params = {"text": "", "page": 0, "per_page": 100, 'only_with_salary': True}
+        self.__params = {"text": "", "page": 0, "per_page": 100, "only_with_salary": True}
         self._vacancies = []
         super().__init__()
 
@@ -50,16 +50,26 @@ class HeadHunterAPI(Parser):
         return vacancies
 
     @classmethod
-    def get_vacancy_list(cls, vacancy):
+    def get_vacancy_formatted(cls, vacancy):
+        """Метод форматирования данных"""
         salary = 0
-        vacancy_list = {
-            "name": vacancy["name"],
-            "url": vacancy.get("url", ""),
-            "salary": salary,
-            "description": f"Обязанности: {vacancy['snippet'].get('responsibility', '')} "
-            f"Требования: {vacancy['snippet'].get('requirement', '')}",
+        if type(vacancy.salary) == dict:
+            from_ = vacancy.salary.get.from_
+            to = vacancy.salary.to
+            if (from_ is not None and from_ != 0) and (to is not None and to != 0):
+                salary = (from_ + to) // 2
+            elif (from_ is not None and from_ !=0) and to is None:
+                salary = from_
+            elif (to is not None and to != 0) and from_ is None:
+                salary = to
+
+        vacancy_formatted = {
+                "name": vacancy.name,
+                "url": vacancy.alternate_url,
+                "salary": salary,
+                "description": f"Обязанности: {vacancy.snippet.responsibility}. Требования: {vacancy.snippet.requirement}",
         }
-        return vacancy_list
+        return vacancy_formatted
 
 
 # if __name__ == "__main__":

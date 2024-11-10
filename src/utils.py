@@ -2,10 +2,11 @@ from src.hh_api import HeadHunterAPI
 from src.vacancy import Vacancy
 
 
-def get_vacancy_list(vacancies_list_dict):
-    """Функция возвращает список экземпляров класса Vacancy из списка словарей"""
-    vacancy_list = list(map(lambda x: Vacancy.new_vacancy(HeadHunterAPI.get_vacancy_formatted(x)), vacancies_list_dict))
-    return vacancy_list
+# def get_vacancy_list(vacancies_list_dict):
+#     """Функция возвращает список экземпляров класса Vacancy из списка словарей"""
+#     formatted_vacancies = map(lambda x: HeadHunterAPI.get_vacancy_formatted(x), vacancies_list_dict)
+#     vacancy_list = [Vacancy.new_vacancy(vacancy) for vacancy in formatted_vacancies]
+#     return vacancy_list
 
 
 def filter_vacancies(vacancies, filter_words):

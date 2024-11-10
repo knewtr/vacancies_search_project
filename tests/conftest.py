@@ -38,7 +38,7 @@ def test_vacancy_3():
         "name": "Python Developer/Разработчик Python",
         "salary": {
             "from": None,
-            "to": 80000,
+            "to": None,
         },
         "alternate_url": "https://hh.ru/vacancy/108374935",
         "snippet": {
@@ -46,3 +46,15 @@ def test_vacancy_3():
             "responsibility": "Поддержание системы. - Разработка нового функционала.",
         },
     }
+
+@pytest.fixture
+def vacancy_1():
+    return {"name": "test1", "url": "test1", "salary": 1, "requirements": "test1", "responsibility": "test1"}
+
+@pytest.fixture
+def vacancy_2():
+    return {"name": "test2", "url": "test2", "salary": 2, "requirements": "test2", "responsibility": "test2"}
+
+@pytest.fixture
+def no_salary_vacancy():
+    return

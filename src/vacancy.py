@@ -15,8 +15,8 @@ class Vacancy(BaseVacancy):
 
     def __str__(self):
         return (
-            f"Вакансия: {self.name}\n, Ссылка: {self.url}\n, Зарплата: {self.salary}\n"
-            f"Обязанности: {self.responsibility}\n, Требования: {self.requirements}\n",
+            f"Вакансия: {self.name}\nСсылка: {self.url}\nЗарплата: {self.salary}\n"
+            f"Обязанности: {self.responsibility}\nТребования: {self.requirements}"
         )
 
     @property
@@ -59,14 +59,17 @@ class Vacancy(BaseVacancy):
     @classmethod
     def cast_to_object_list(cls, vacancies: list[dict]):
         """Метод возвращает список объектов класса Vacancy из списка словарей"""
-        return [cls(**vacancy) for vacancy in vacancies]
+        objects_list = []
+        for vacancy in vacancies:
+            objects_list.append(cls(vacancy.get('name'), vacancy.get('url'), vacancy.get('salary'), vacancy.get('responsibility'), vacancy.get('requirements')))
+        return objects_list
 
     @classmethod
-    def new_vacancy(cls, new_vacancy_dict):
+    def new_vacancy(cls, new_vacancy_dict: dict):
         """Метод позволяет инициализировать новую вакансию"""
-        name = new_vacancy_dict.name
-        url = new_vacancy_dict.url
-        salary = Vacancy.__is_salary(new_vacancy_dict.salary)
-        responsibility = new_vacancy_dict.responsibility
-        requirements = new_vacancy_dict.requirements
+        name = new_vacancy_dict.get('name')
+        url = new_vacancy_dict.get('url')
+        salary = Vacancy.__is_salary(new_vacancy_dict.get('salary'))
+        responsibility = new_vacancy_dict.get('responsibility')
+        requirements = new_vacancy_dict.get('requirements')
         return cls(name, url, salary, responsibility, requirements)

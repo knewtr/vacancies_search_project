@@ -1,5 +1,4 @@
 import json
-import os
 
 from src.file_manager import FileManager
 from src.vacancy import Vacancy
@@ -15,6 +14,7 @@ class JSONSaver(FileManager):
                 data = json.load(file)
         except FileNotFoundError:
             print("Файл не существует")
+
 
     def read_json_file(self):
         """Метод для чтения данных json-файла"""
@@ -37,9 +37,3 @@ class JSONSaver(FileManager):
         with open(self.__file_worker, "w") as file:
             data = json.load(file)
             json.dump(data, file)
-
-
-# if __name__ == "__main__":
-#     vac_1 = Vacancy.new_vacancy({"name": 'test1', "url": "test1", "salary": 1, "description": "test1"})
-#     print(JSONSaver().read_json_file)
-#     JSONSaver().add_vacancy(vac_1)

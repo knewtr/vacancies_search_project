@@ -13,7 +13,7 @@ def filter_vacancies(vacancies: list[Vacancy], filter_words: list[str]) -> list[
     filtered_vacancies = []
     for vacancy in vacancies:
         for word in filter_words:
-            if word.lower() in vacancy.description.lower():
+            if word.lower() in vacancy.get('responsibility').lower():
                 filtered_vacancies.append(vacancy)
                 continue
     return filtered_vacancies

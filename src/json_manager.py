@@ -30,7 +30,7 @@ class JSONSaver(FileManager):
     def add_vacancy(self, vacancy: Vacancy):
         """Метод для добавления новых данных в json-файл"""
         vacancy_dict = vacancy.vacancy_dict
-        with open(self.__file_worker, "w") as file:
+        with open(self.__file_worker, "a") as file:
             self.exist = True
             add_data_vacancy = [vacancy_dict]
             json.dump(add_data_vacancy, file)

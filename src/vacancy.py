@@ -4,18 +4,18 @@ from src.base_vacancy import BaseVacancy
 class Vacancy(BaseVacancy):
     """Класс для работы с данными вакансий"""
 
-    __slots__ = ("name", "url", "salary", "description")
+    __slots__ = ("name", "url", "salary", "requirements")
 
-    def __init__(self, name, url, salary, description):
+    def __init__(self, name, url, salary, requirements):
         self.name = name
         self.url = url
         self.salary = salary
-        self.description = description
+        self.requirements = requirements
 
     def __str__(self):
         return (
             f"Вакансия: {self.name}\n, Ссылка: {self.url}\n, Зарплата: {self.salary}\n"
-            f"Описание: {self.description}\n"
+            f"Требования: {self.requirements}\n"
         )
 
     @property
@@ -25,7 +25,7 @@ class Vacancy(BaseVacancy):
             "name": self.name,
             "url": self.url,
             "salary": self.salary,
-            "description": self.description,
+            "description": self.requirements,
         }
 
     def __le__(self, other):
@@ -45,7 +45,7 @@ class Vacancy(BaseVacancy):
         return self.salary > other.salary
 
     @staticmethod
-    def _is_salary(salary: int | str | None) -> int:
+    def __is_salary(salary: int | str | None) -> int:
         """Метод валидации данных о зарплате"""
         if salary is None or (type(salary) is str and not salary.isdigit()):
             return 0
@@ -64,6 +64,6 @@ class Vacancy(BaseVacancy):
         """Метод позволяет инициализировать новую вакансию"""
         name = new_vacancy_dict.get("name")
         url = new_vacancy_dict.get("url")
-        salary = Vacancy._is_salary(new_vacancy_dict.get("salary", 0))
-        description = new_vacancy_dict.get("description")
-        return cls(name, url, salary, description)
+        salary = Vacancy.__is_salary(new_vacancy_dict.get("salary", 0))
+        requirements = new_vacancy_dict.get("requirements")
+        return cls(name, url, salary, requirements)

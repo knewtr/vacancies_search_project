@@ -1,6 +1,4 @@
 from src.hh_api import HeadHunterAPI
-from src.utils import get_vacancy_list
-from tests.conftest import test_vacancy_2
 
 
 def test_headhunter_api():

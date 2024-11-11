@@ -1,5 +1,7 @@
 import pytest
 
+from src.vacancy import Vacancy
+
 
 @pytest.fixture
 def test_vacancy_1():
@@ -51,14 +53,24 @@ def test_vacancy_3():
 
 @pytest.fixture
 def vacancy_1():
-    return {"name": "test1", "url": "test1", "salary": 1, "requirements": "test1", "responsibility": "test1"}
+    return {'name':'name_test1', 'url':'url_test1', 'salary':10000, 'responsibility' : 'resp_test1', 'requirements':'req_test1'}
 
 
 @pytest.fixture
 def vacancy_2():
-    return {"name": "test2", "url": "test2", "salary": 2, "requirements": "test2", "responsibility": "test2"}
+    return {'name':'name_test2', 'url':'url_test2', 'salary':20000, 'responsibility' : 'resp_test2', 'requirements':'req_test2'}
 
 
 @pytest.fixture
-def no_salary_vacancy():
-    return
+def vac1():
+    return Vacancy('name_test1', 'url_test1', 10000, 'resp_test1', 'req_test1')
+
+@pytest.fixture
+def vac2():
+    return Vacancy('name_test2', 'url_test2', 20000, 'resp_test2', 'req_test2')
+
+@pytest.fixture
+def vac_list():
+    listed_vacancies = [Vacancy('name_test1', 'url_test1', 10000, 'resp_test1', 'req_test1'),
+                        Vacancy('name_test2', 'url_test2', 20000, 'resp_test2', 'req_test2')]
+    return listed_vacancies

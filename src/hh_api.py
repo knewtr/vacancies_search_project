@@ -51,26 +51,14 @@ class HeadHunterAPI(Parser):
 
     # @classmethod
     # def get_vacancy_formatted(cls, vacancy):
-    #     """Метод форматирования данных"""
-    #     salary = 0
-    #     if type(vacancy.salary) == dict:
-    #         from_ = vacancy.salary.get.from_
-    #         to = vacancy.salary.to
-    #         if (from_ is not None and from_ != 0) and (to is not None and to != 0):
-    #             salary = (from_ + to) // 2
-    #         elif (from_ is not None and from_ !=0) and to is None:
-    #             salary = from_
-    #         elif (to is not None and to != 0) and from_ is None:
-    #             salary = to
-    #
     #     vacancy_formatted = {
     #             "name": vacancy.name,
     #             "url": vacancy.alternate_url,
-    #             "salary": salary,
+    #             "salary": __is_salary.salary,
     #             "responsibilities": vacancy.snippet.responsibility,
     #             "requirements": vacancy.snippet.requirement,
     #     }
-    #     return vacancy_formatted
+    #     return vacancy_formatted #нужно отформатировать эту функцию, чтобы всё выводилось в объект класса
 
 
 # if __name__ == "__main__":

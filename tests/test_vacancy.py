@@ -2,10 +2,15 @@ from src.vacancy import Vacancy
 
 
 def test_print_vacancy(capsys):
-    vacancy_1 = Vacancy(name="name_test1", url="url_test1", salary=10000, responsibility="resp_test1", requirements="req_test1")
+    vacancy_1 = Vacancy(
+        name="name_test1", url="url_test1", salary=10000, responsibility="resp_test1", requirements="req_test1"
+    )
     print(vacancy_1)
     message = capsys.readouterr()
-    expected_output = f"Вакансия: name_test1\nСсылка: url_test1\nЗарплата: 10000\n" f"Обязанности: resp_test1\nТребования: req_test1\n"
+    expected_output = (
+        f"Вакансия: name_test1\nСсылка: url_test1\nЗарплата: 10000\n"
+        f"Обязанности: resp_test1\nТребования: req_test1\n"
+    )
     assert message.out == expected_output
 
 

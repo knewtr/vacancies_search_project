@@ -49,17 +49,6 @@ class HeadHunterAPI(Parser):
                 self.__params["page"] += 1
         return vacancies
 
-    # @classmethod
-    # def get_vacancy_formatted(cls, vacancy):
-    #     vacancy_formatted = {
-    #             "name": vacancy.name,
-    #             "url": vacancy.alternate_url,
-    #             "salary": __is_salary.salary,
-    #             "responsibilities": vacancy.snippet.responsibility,
-    #             "requirements": vacancy.snippet.requirement,
-    #     }
-    #     return vacancy_formatted #нужно отформатировать эту функцию, чтобы всё выводилось в объект класса
-
 
 # if __name__ == "__main__":
 #     HeadHunterAPI().get_vacancies("Python")

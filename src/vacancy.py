@@ -15,8 +15,11 @@ class Vacancy(BaseVacancy):
 
     def __str__(self):
         return (
-            f"Вакансия: {self.name}\nСсылка: {self.url}\nЗарплата: {self.salary}\n"
-            f"Обязанности: {self.responsibility}\nТребования: {self.requirements}"
+            f"Вакансия: {self.name}\n"
+            f"Ссылка: {self.url}\n"
+            f"Зарплата: {self.salary}\n"
+            f"Обязанности: {self.responsibility}\n"
+            f"Требования: {self.requirements}"
         )
 
     @property

@@ -19,7 +19,7 @@ def test_get_vacancies_by_salary(vac1, vac2):
 def test_sort_vacancies(vac_list, expected_list):
     res = sort_vacancies(vac_list)
     for i, vac in enumerate(res):
-        assert str(vac) == expected_list[i]
+        assert str(vac) == expected_list[3]
 
 
 def test_get_top_vacancies(sorted_list, vacancy4, vacancy3, vacancy2):

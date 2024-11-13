@@ -28,3 +28,11 @@ def test_new_vacancy(vacancy_1, test_vacancy_1):
     assert test_vacancy_1.salary == 10000
     assert test_vacancy_1.requirements == "req_test1"
     assert test_vacancy_1.responsibility == "resp_test1"
+
+
+def test_cast_to_object(vacancies1):
+    vacancies_objects = Vacancy.cast_to_object_list(vacancies1)
+    assert vacancies_objects[0].name == "name_test1"
+    assert vacancies_objects[0].salary == 10000
+    assert vacancies_objects[-1].responsibility == "resp_test2"
+    assert vacancies_objects[-1].requirements == "req_test2"

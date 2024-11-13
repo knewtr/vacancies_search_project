@@ -92,10 +92,10 @@ class Vacancy(BaseVacancy):
 #         {'name':'name_test1', 'url':'url_test1', 'salary':1, 'responsibility' : 'resp_test1', 'requirements':'req_test1'},
 #         {'name':'name_test2', 'url':'url_test2', 'salary':2, 'responsibility' : 'resp_test2', 'requirements':'req_test2'}
 #     ]
-#
-#     result = Vacancy.cast_to_object_list(vacancies1)
-#     print(result)
-#
-#     new_vacancy1 = {'name':'name_test3', 'url':'url_test3', 'salary':3, 'responsibility' : 'resp_test3', 'requirements':'req_test3'}
-#     res_1 = Vacancy.new_vacancy(new_vacancy1)
-#     print(res_1)
+#     vacancy_objects = Vacancy.cast_to_object_list(vacancies1)
+#     for vac in vacancy_objects:
+#         print(vac)
+
+# new_vacancy1 = {'name':'name_test3', 'url':'url_test3', 'salary':3, 'responsibility' : 'resp_test3', 'requirements':'req_test3'}
+# res_1 = Vacancy.new_vacancy(new_vacancy1)
+# print(res_1)

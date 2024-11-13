@@ -122,3 +122,24 @@ def vacancy4():
 def sorted_list(vacancy4, vacancy3, vacancy2):
     sorted_l = [vacancy4, vacancy3, vacancy2]
     return sorted_l
+
+
+@pytest.fixture
+def vacancies1():
+    vacancies1 = [
+        {
+            "name": "name_test1",
+            "url": "url_test1",
+            "salary": 10000,
+            "responsibility": "resp_test1",
+            "requirements": "req_test1",
+        },
+        {
+            "name": "name_test2",
+            "url": "url_test2",
+            "salary": 20000,
+            "responsibility": "resp_test2",
+            "requirements": "req_test2",
+        },
+    ]
+    return vacancies1
